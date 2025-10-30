@@ -1,60 +1,6 @@
 <?php
 include './wizard.php';
-session_start();
-$_SESSION['id'] = session_id();
-$_SESSION['pwd'] = '';
 
-if (isset($_GET['pwd-length'])) {
-  $length = intval($_GET['pwd-length']);
-} else {
-  $letters = false;
-}
-
-if (isset($_GET['repeat-char'])) {
-  $repeat = true;
-} else {
-  $letters = false;
-}
-
-if (!isset($_GET['letters'])) {
-  $letters = false;
-} else {
-  $letters = true;
-}
-
-if (isset($_GET['numbers'])) {
-  $numbers = $_GET['numbers'];
-} else {
-  $numbers = false;
-}
-
-if (isset($_GET['special'])) {
-  $special = $_GET['special'];
-} else {
-  $special = false;
-}
-
-if ($_GET) {
-  foreach ($_GET as $key => $value) {
-    switch ($key) {
-      case 'pwd-length':
-        $length = intval($value);
-        break;
-      case 'repeat-char':
-        $repeat = true;
-        break;
-      case 'letters':
-        $letters = true;
-        break;
-      case 'numbers':
-        $numbers = true;
-        break;
-      case 'special':
-        $special = true;
-        break;
-    }
-  }
-}
 ?>
 
 
@@ -83,7 +29,7 @@ if ($_GET) {
         <div class="card mt-3">
           <div class="card-header text-center bg-primary text-white">
             <h2>Generate your super password</h2>
-            <h6>session id : <?php echo $_SESSION['id'] ?></h6>
+            <h6>session : <?php echo $_SESSION['name'] ?></h6>
           </div>
           <div class="card-body">
             <form action="./index.php">
