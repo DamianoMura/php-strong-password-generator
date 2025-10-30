@@ -53,17 +53,51 @@ if ($_GET) {
         $length = intval($value);
         break;
       case 'repeat-char':
-        $repeat = true;
+        $repeat = $value;
         break;
       case 'letters':
-        $letters = true;
+        $letters = $value;
         break;
       case 'numbers':
-        $numbers = true;
+        $numbers = $value;
         break;
       case 'special':
-        $special = true;
+        $special = $value;
         break;
     }
   }
+  $_SESSION['pwd'] = generate($length, $repeat, $letters, $numbers, $special);
+  header('Location: show.php');
+}
+
+
+function generate($length, $repeat, $letters, $numbers, $special)
+{
+  $password = '';
+  $characters = '';
+
+  if ($letters) {
+    $characters .= 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  }
+  if ($numbers) {
+    $characters .= '0123456789';
+  }
+  if ($special) {
+    $characters .= '!@#$%^&*()_+-=[]{}|;:,.<>?';
+  }
+
+  $charactersLength = strlen($characters);
+
+  if ($charactersLength == 0) {
+    return 'Please select at least one character type.';
+  }
+
+  while (strlen($password) < $length) {
+    $randomChar = $characters[rand(0, $charactersLength - 1)];
+    if ($repeat || strpos($password, $randomChar) === false) {
+      $password .= $randomChar;
+    }
+  }
+
+  return $password;
 }

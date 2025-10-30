@@ -6,4 +6,6 @@ document.getElementById("label-length").innerText = e.target.value;
 });
 
 //default value for this checkbox is selected 
-document.getElementById("letters").checked=true
+if (!document.getElementById("letters").checked && !document.getElementById("numbers").checked && !document.getElementById("special").checked){
+    document.getElementById("letters").checked = true;
+}
