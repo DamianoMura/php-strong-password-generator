@@ -1,6 +1,5 @@
 <?php
 include './wizard.php';
-
 ?>
 
 
@@ -20,10 +19,8 @@ include './wizard.php';
   <div class="container bg-dark text-danger p-3">
     <div class="row">
       <div class="col-12">
-        <h1 class="text-center my-5 text-success">
-          Strong Password Generator
-        </h1>
-        <h2 class="text-center"> the ultimate keygen for your strong passwords</h2>
+        <?php include './header.php' ?>
+
       </div>
       <div class="col-12">
         <div class="card mt-3">
